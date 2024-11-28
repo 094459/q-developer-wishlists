@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="wishlist-detail">
+    <div class="wishlist-header">
+        <h1>{{ wishlist.name }}</h1>
+        <p>{{ wishlist.description }}</p>
+        
+        {% if session.get('user_id') == wishlist.user_id %}
+        <a href="{{ url_for('wishlist.add_item', id=wishlist.id) }}" class="button primary">Add Item</a>
+        {% endif %}
+    </div>
+    
+    <div class="items-container">
+        {% for item in wishlist.items %}
+        <div class="wishlist-item {% if item.status == 'purchased' %}purchased{% endif %}">
+            <div class="item-info">
+                <h3><a href="{{ item.url }}" target="_blank">{{ item.description }}</a></h3>
+                <p class="status">Status: {{ item.status }}</p>
+            </div>
+            <div class="item-actions">
+                {% if session.get('user_id') %}
+                <a href="{{ url_for('wishlist.toggle_item', id=item.id) }}" class="button secondary">
+                    {% if item.status == 'open' %}Mark Purchased{% else %}Mark Open{% endif %}
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+        <p>No items in this wishlist yet.</p>
+        {% endfor %}
+    </div>
+    
+    <div class="share-section">
+        <h2>Share this Wishlist</h2>
+        <input type="text" readonly value="{{ request.url }}" class="share-link">
+    </div>
+</div>
+{% endblock %}

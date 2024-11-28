@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="add-item">
+    <h1>Add Item to {{ wishlist.name }}</h1>
+    
+    <form method="POST" action="{{ url_for('wishlist.add_item', id=wishlist.id) }}">
+        <div class="form-group">
+            <label for="url">Item URL</label>
+            <input type="url" id="url" name="url" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+        </div>
+        
+        <button type="submit" class="button primary">Add Item</button>
+    </form>
+</div>
+{% endblock %}

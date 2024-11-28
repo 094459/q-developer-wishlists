@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="home-container">
+    <h1>Welcome to Gift Sharing</h1>
+    
+    <section class="features">
+        <h2>Why Use Our Gift Sharing App?</h2>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Create Wishlists</h3>
+                <p>Easily create and manage multiple wishlists for different occasions.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>Share with Friends</h3>
+                <p>Share your wishlists with friends and family with just one click.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>Track Purchases</h3>
+                <p>Never worry about duplicate gifts - items are marked as purchased in real-time.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>Simple to Use</h3>
+                <p>Just add URLs and descriptions for items you want - it's that easy!</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta">
+        <h2>Get Started Today</h2>
+        <p>Join our community and start sharing your wishlists with loved ones!</p>
+        <div class="cta-buttons">
+            <a href="{{ url_for('auth.register') }}" class="button primary">Create Account</a>
+            <a href="{{ url_for('auth.login') }}" class="button secondary">Login</a>
+        </div>
+    </section>
+</div>
+{% endblock %}

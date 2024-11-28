@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1>My Wishlists</h1>
+        <a href="{{ url_for('wishlist.new_wishlist') }}" class="button primary">Create New Wishlist</a>
+    </div>
+    
+    <div class="wishlist-grid">
+        {% for list in gift_lists %}
+        <div class="wishlist-card">
+            <h2>{{ list.name }}</h2>
+            <p>{{ list.description }}</p>
+            <div class="wishlist-actions">
+                <a href="{{ url_for('wishlist.view_wishlist', id=list.id) }}" class="button secondary">View Details</a>
+                {# Remove or comment out the share link until the route is implemented #}
+                {# <a href="{{ url_for('wishlist.share', id=list.id) }}" class="button secondary">Share</a> #}
+            </div>
+        </div>
+        {% else %}
+        <p>No wishlists yet. Create your first wishlist to get started!</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
